@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-import { MainButton, HexButton, RgbButton } from "../Button/styles";
+import {
+  MainButton,
+  TabDefaultButton,
+  TabActiveButton,
+} from "../Button/styles";
 import { Input } from "../Input/styles";
 import * as C from "./styles";
 
@@ -15,11 +19,11 @@ const Tabs = ({
   getActiveTab,
   hexColor,
   rgbColor,
-  currentColor
+  currentColor,
 }: TabsProps) => {
   const [activeTab, setActiveTab] = useState<string>("hex");
-  const [hex, setHex] = useState("");
-  const [rgb, setRgb] = useState("");
+  const [hex, setHex] = useState<string>("");
+  const [rgb, setRgb] = useState<string>("");
   //const [isActive, setIsActive] = useState(false);
 
   const hexColorInput = () => {
@@ -46,7 +50,7 @@ const Tabs = ({
 
   return (
     <>
-      <C.TabsButtonsContainer>
+      {/* <C.TabsButtonsContainer>
         <HexButton
           onClick={handleTabHex}
           buttonColor={currentColor}
@@ -61,16 +65,34 @@ const Tabs = ({
         >
           RGB
         </RgbButton>
-      </C.TabsButtonsContainer>
+      </C.TabsButtonsContainer> */}
       {activeTab === "hex" ? (
         <>
+          <C.TabsButtonsContainer>
+            <TabActiveButton
+              onClick={handleTabHex}
+              buttonColor={currentColor}
+              activeBtn={activeTab}
+            >
+              Hex
+            </TabActiveButton>
+            <TabDefaultButton
+              onClick={handleTabRGB}
+              buttonColor={currentColor}
+              activeBtn={activeTab}
+            >
+              RGB
+            </TabDefaultButton>
+          </C.TabsButtonsContainer>
           <C.InputTabs>
             <C.InputContainer>
-              <label for="hexainput">#</label>
+              <label htmlFor="hexainput">#</label>
               <Input
                 type="text"
                 id="hexainput"
-                onChange={(e) => setHex(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setHex(e.target.value)
+                }
                 inputBgColor={currentColor}
                 // autoFocus
               ></Input>
@@ -82,14 +104,32 @@ const Tabs = ({
         </>
       ) : (
         <>
+          <C.TabsButtonsContainer>
+            <TabDefaultButton
+              onClick={handleTabHex}
+              buttonColor={currentColor}
+              activeBtn={activeTab}
+            >
+              Hex
+            </TabDefaultButton>
+            <TabActiveButton
+              onClick={handleTabRGB}
+              buttonColor={currentColor}
+              activeBtn={activeTab}
+            >
+              RGB
+            </TabActiveButton>
+          </C.TabsButtonsContainer>
           <C.InputTabs>
             <C.InputContainer>
-              <label for="rgbinput">rgb</label>
+              <label htmlFor="rgbinput">rgb</label>
               <Input
                 type="text"
                 id="rgbinput"
                 placeholder="RRR,GGG,BBB"
-                onChange={(e) => setRgb(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setRgb(e.target.value)
+                }
                 inputBgColor={currentColor}
                 //autoFocus
               ></Input>

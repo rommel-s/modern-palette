@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
 type BgColor = {
-  mainBackgroundColor: string;
-  inputActive: string;
-  userColorInput: string;
-  rgbInput: string;
+  mainBackgroundColor?: string;
 };
 
 export const MainContainer = styled.div<BgColor>`

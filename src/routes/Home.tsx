@@ -7,14 +7,14 @@ import Tabs from "../components/Tabs";
 
 import rgbHex from "rgb-hex";
 
-type Inputs = {
-  hexInput: string;
-  rgbInput: string;
-};
+// type Inputs = {
+//   hexInput: string;
+//   rgbInput: string;
+// };
 
 const Home = () => {
-  const [bgColor, setBgColor] = useState("FAB70A");
-  const [tabActive, setTabActive] = useState();
+  const [bgColor, setBgColor] = useState<string>("FAB70A");
+  const [tabActive, setTabActive] = useState<string>();
 
   const handlerHex = (hex: string) => {
     setBgColor(hex);
@@ -42,7 +42,7 @@ const Home = () => {
       "c",
       "d",
       "e",
-      "f"
+      "f",
     ];
 
     //gera uma posição aleatória dos valores do array
@@ -71,7 +71,7 @@ const Home = () => {
   };
 
   return (
-    <C.MainContainer mainBackgroundColor={bgColor} inputActive={tabActive}>
+    <C.MainContainer mainBackgroundColor={bgColor}>
       <Tabs
         getActiveTab={activeTabHandler}
         hexColor={handlerHex}
